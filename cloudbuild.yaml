@@ -19,7 +19,7 @@ steps:
       - '--platform'
       - 'managed'
       - '--region'
-      - 'us-central'
+      - 'us-central1'
       - '--allow-unauthenticated'
 
 images:

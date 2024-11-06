@@ -20,7 +20,7 @@ public class AppUser {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String accessToken;
 
     @Column(nullable = false, updatable = false)

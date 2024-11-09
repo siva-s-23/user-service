@@ -1,7 +1,7 @@
 package com.buildwithshiva.controller;
 
 import com.buildwithshiva.dto.CreateUserRequest;
-import com.buildwithshiva.model.AppUser;
+import com.buildwithshiva.model.Users;
 import com.buildwithshiva.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +20,8 @@ public class AppUserController {
 
     // Endpoint to create a new user
     @PostMapping("/create")
-    public ResponseEntity<AppUser> createUser(@RequestBody CreateUserRequest createUserRequest) {
-        AppUser newUser = appUserService.createUser(createUserRequest);
-        return ResponseEntity.status(201).body(newUser); // Return created user with HTTP 201 status
+    public ResponseEntity<Users> createUser(@RequestBody CreateUserRequest createUserRequest) {
+        Users newUser = appUserService.createUser(createUserRequest);
+        return ResponseEntity.status(200).body(newUser); // Return created user with HTTP 200 status
     }
 }

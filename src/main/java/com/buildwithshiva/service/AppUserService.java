@@ -1,7 +1,7 @@
 package com.buildwithshiva.service;
 
 import com.buildwithshiva.dto.CreateUserRequest;
-import com.buildwithshiva.model.AppUser;
+import com.buildwithshiva.model.Users;
 import com.buildwithshiva.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +20,11 @@ public class AppUserService {
     }
 
     // Method to create a new user
-    public AppUser createUser(CreateUserRequest createUserRequest) {
+    public Users createUser(CreateUserRequest createUserRequest) {
         // Check if user already exists
-        Optional<AppUser> existingUser = appUserRepository.findByEmail(createUserRequest.getEmail());
+        Optional<Users> existingUser = appUserRepository.findByEmail(createUserRequest.getEmail());
 
-        AppUser user;
+        Users user;
         if (existingUser.isPresent()) {
             // Update existing user's access token and other information
             user = existingUser.get();
@@ -33,7 +33,15 @@ public class AppUserService {
             appUserRepository.save(user); // Save the updated user
         } else {
             // Create a new user if it does not exist
-            user = new AppUser(createUserRequest.getName(), createUserRequest.getEmail(), createUserRequest.getAccessToken(), LocalDateTime.now(), createUserRequest.getUserRole());
+            user = new Users(
+                    createUserRequest.getName(),
+                    createUserRequest.getEmail(),
+                    createUserRequest.getAccessToken(),
+                    LocalDateTime.now(),
+                    createUserRequest.getRole(),
+                    true
+            );
+            user.setLastLogin(LocalDateTime.now());
             appUserRepository.save(user);
         }
         return user;

@@ -3,10 +3,13 @@ package com.buildwithshiva.dto;
 import java.time.LocalDateTime;
 
 public class CreateUserRequest {
+
     private String name;
     private String email;
     private String accessToken;
-    private String userRole;
+    private String role;
+    private Boolean isActive;  // Added isActive to match the Users model
+    private LocalDateTime lastLogin; // Added lastLogin to match the Users model
 
     // Getters and Setters
     public String getName() {
@@ -33,11 +36,27 @@ public class CreateUserRequest {
         this.accessToken = accessToken;
     }
 
-    public String getUserRole() {
-        return userRole;
+    public String getRole() {
+        return role;
     }
 
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public LocalDateTime getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(LocalDateTime lastLogin) {
+        this.lastLogin = lastLogin;
     }
 }
